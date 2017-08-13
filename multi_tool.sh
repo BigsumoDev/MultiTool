@@ -1,7 +1,7 @@
 #!/bin/bash
 # Multi Tool | Install Software & Games
 # Devolvement by Bigsumo - Studio4Gamer.de bigsumo@studio4gamer.de
-Instversion="1.0"
+Instversion="1.2"
 #####################################################
 #Variabel
 question="Installation wirklich starten ?"
