@@ -145,7 +145,6 @@ echo
 	esac
 done
 
-
 ####################################################
 #Ende
 echo "Danke für die Benutzung von Multi Tool"
