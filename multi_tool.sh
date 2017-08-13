@@ -1,5 +1,5 @@
 #!/bin/bash
-# Multi Tool | Install Software & Games
+# Multi Tool Server Test
 # Devolvement by Bigsumo - Studio4Gamer.de bigsumo@studio4gamer.de
 Instversion="1.0.0"
 #####################################################
