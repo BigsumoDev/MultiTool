@@ -1,7 +1,7 @@
 #!/bin/bash
 # Multi Tool | Install Software & Games
 # Devolvement by Bigsumo - Studio4Gamer.de bigsumo@studio4gamer.de
-Instversion="1.1"
+Instversion="1.0"
 #####################################################
 #Variabel
 question="Installation wirklich starten ?"
@@ -20,6 +20,10 @@ function redMessage {
 function errorEingabe {
   redMessage "Falsche Eingabe."
   return
+}
+function errorExit {
+  redMessage "${@}"
+  exit 1
 }
 ####################################################
 #Update/Upgrade - Muss noch überarbeitet werden.
@@ -41,10 +45,17 @@ sleep 2
 ####################################################
 #Script Update Abfrage // keine Funktion (in Arbeit)
 clear
+LATEST_VERSION=$(wget --no-check-certificate --timeout=60 -qO - https://raw.githubusercontent.com/BigsumoDev/MultiTool/master/multi_tool.sh | grep -Po '(?<=Instversion=")([0-9]\.[0-9]\.[0-9]+)')
 echo "Script Update v.1.0"
 read -p  "Script Update ? j/n : " ScriptUpdate
 if [ $ScriptUpdate == j ]
- then LATEST_VERSION=$(wget --no-check-certificate --timeout=60 -qO - https://raw.githubusercontent.com/BigsumoDev/MultiTool/master/multi_tool.sh | grep -Po '(?<=Instversion=")([0-9]\.[0-9]\.[0-9]+)')
+ then
+   if [ "$(printf "${LATEST_VERSION}\n${Instversion}" | sort -V | tail -n 1)" != "$Instversion" ]; then
+     errorExit "Outdated installer ${Instversion}. Upgrade your installer to version ${LATEST_VERSION}. Or reuse https://sinusbot-installer.de"
+   else
+     greenMessage "Your installer is up-to-date."
+     sleep 1
+   fi
 else
   echo "gut"
 fi
