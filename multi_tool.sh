@@ -1,7 +1,7 @@
 #!/bin/bash
 # Multi Tool | Install Software & Games
 # Devolvement by Bigsumo - Studio4Gamer.de bigsumo@studio4gamer.de
-
+Instversion="1.1"
 #####################################################
 #Variabel
 question="Installation wirklich starten ?"
@@ -16,7 +16,6 @@ function greenMessage {
 function redMessage {
   echo -e "\\033[31;1m${*}\033[0m"
 }
-
 #Funktionen
 function errorEingabe {
   redMessage "Falsche Eingabe."
@@ -43,8 +42,12 @@ sleep 2
 #Script Update Abfrage // keine Funktion (in Arbeit)
 clear
 echo "Script Update v.1.0"
-echo ""
-echo "Diese Funktion  ist nocht nocht inplamentiert"
+read -p  "Script Update ? j/n : " ScriptUpdate
+if [ $ScriptUpdate == j ]
+ then LATEST_VERSION=$(wget --no-check-certificate --timeout=60 -qO - https://raw.githubusercontent.com/BigsumoDev/MultiTool/master/multi_tool.sh | grep -Po '(?<=Instversion=")([0-9]\.[0-9]\.[0-9]+)')
+else
+  echo "gut"
+fi
 sleep 2
 ####################################################
 #Wichtige Software Installieren --Variabel abfrage
@@ -144,6 +147,7 @@ echo
 			;;
 	esac
 done
+
 
 ####################################################
 #Ende
