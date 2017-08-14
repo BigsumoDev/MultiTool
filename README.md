@@ -2,7 +2,7 @@
 
 Offiziele Unterstützte Systeme:
 
-- Debian 8 (Recommend)
+- Debian 8 (Empfohlen)
 
 ### Funktionen:
   > Da Dieser Script grade in Endtwicklung ist. Gibt es noch keine Funktionen
@@ -13,7 +13,7 @@ Offiziele Unterstützte Systeme:
 - WebSpace Installer mit MYSQL-Server & PHPMYADMIN
 - MailSystem Installer
 - Webmine Installer
-- GameServer Installer (Mit Extene Software //bsp. Easy-Wi)
+- GameServer Installer (Mit Externe Software //bsp. Easy-Wi)
 - Cloud Installer
 
-> Es sind noch Mehr Sachen Geplannt und werden Laufe der zeit Hinzugefügt. Dazu nehme ich aber auch gerne vorschläge an. 
+> Es sind noch mehr Sachen geplannt und werden laufe der Zeit Hinzugefügt. Dazu nehme ich aber auch gerne vorschläge an. 
