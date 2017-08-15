@@ -4,9 +4,9 @@
 #E-Mail = bigsumo@studio4gamer.de
 Instversion="1.0.0"
 
-#Information
+#Informecho 
 echo "Der Script ist noch nicht Funktionsfähig"
-pause 3
+sleep 5
 #####################################################
 #Variabel
 question="Installation wirklich starten ?"
