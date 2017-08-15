@@ -1,19 +1,37 @@
-# MultiTool [Linux] [![Build Status](https://travis-ci.org/BigsumoDev/MultiTool.svg?branch=master)](https://travis-ci.org/BigsumoDev/MultiTool)
+![MultiTool Logo](http://www.bilder-upload.eu/upload/11123a-1502823129.png)
+Status: [![Build Status](https://travis-ci.org/BigsumoDev/MultiTool.svg?branch=master)](https://travis-ci.org/BigsumoDev/MultiTool)
+================
 
-Offiziele Unterstützte Systeme:
+German:
+---------------------------------------
+Multi Tool, was ist das ? Es ist ein Script, was ermöglichen soll, schnell und funktionfähig Anwenundungen zu installieren. Parktisch für schnelle Server Installation.
 
-- Debian 8 (Empfohlen)
+> Geplannte Funktionen:
+  - TeamSpeak
+    > Mit optionalen Extras: Ranksytem & TS3 Web Admin Panel
+  - TeamSpeak MusikBot unterstüzt durch Sinusbot
+    > YT-DLL etc alles eingestellt
+  - Webspace
+    > Apache2 oder Nginx
+  - MYSQL Server
+    > MySql oder MariaDB (optional mit phpmyadmin)
+  - Mailsytem
+    > evt. mit Mailcow
+  - Cloud
+    > NextCloud oder OwnCloud
+  - Server Webinterface für System Administration
+    > Webmin oder Ajenti
+  - Gameserver Interface & Gameserver
+    > Easy-Wi
 
-### Funktionen:
-  > Da Dieser Script grade in Endtwicklung ist. Gibt es noch keine Funktionen
-  
-### Geplante Funktionen:
-- TeamSpeak Installer
-- TeamSpeak Musik Bot Installer
-- WebSpace Installer mit MYSQL-Server & PHPMYADMIN
-- MailSystem Installer
-- Webmine Installer
-- GameServer Installer (Mit Externe Software //bsp. Easy-Wi)
-- Cloud Installer
 
-> Es sind noch mehr Sachen geplannt und werden laufe der Zeit Hinzugefügt. Dazu nehme ich aber auch gerne vorschläge an. 
+__INFO__: Das Script ist in Entwicklungsphase.
+
+
+---------------------------------------
+English:
+---------------------------------------
+
+Come Soon
+
+---------------------------------------
