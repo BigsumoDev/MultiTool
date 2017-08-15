@@ -1,13 +1,16 @@
 #!/bin/bash
-# Multi Tool Server Test
-# Devolvement by Bigsumo - Studio4Gamer.de bigsumo@studio4gamer.de
+# Multi Tool | Install Server Application
+# Devolvement by BigsumoDev - Studio4Gamer.de
+#E-Mail = bigsumo@studio4gamer.de
 Instversion="1.0.0"
+
+#Information
+echo "Der Script ist noch nicht Funktionsfähig"
+pause 3
 #####################################################
 #Variabel
 question="Installation wirklich starten ?"
 error="Falscher Parameter, bitte wiederhole die Eingabe"
-
-
 #################--Funktionen--######################
 #Color
 function greenMessage {
@@ -43,27 +46,21 @@ if [ $kommando == j ]
 fi
 sleep 2
 ####################################################
-#Script Update Abfrage // keine Funktion (in Arbeit)
+#Script Update Abfrage // nur abfrage | Auto Update ist noch geplannt
 clear
 LATEST_VERSION=$(wget --no-check-certificate --timeout=60 -qO - https://raw.githubusercontent.com/BigsumoDev/MultiTool/master/multi_tool.sh | grep -Po '(?<=Instversion=")([0-9]\.[0-9]\.[0-9]+)')
-echo "Script Update v.1.0"
-read -p  "Script Update ? j/n : " ScriptUpdate
-if [ $ScriptUpdate == j ]
- then
-   if [ "$(printf "${LATEST_VERSION}\n${Instversion}" | sort -V | tail -n 1)" != "$Instversion" ]; then
-     errorExit "Outdated installer ${Instversion}. Upgrade your installer to version ${LATEST_VERSION}. Or reuse https://sinusbot-installer.de"
-   else
-     greenMessage "Your installer is up-to-date."
-     sleep 1
-   fi
+echo "Scipt Version Check"
+if [ "$(printf "${LATEST_VERSION}\n${Instversion}" | sort -V | tail -n 1)" != "$Instversion" ]; then
+  errorExit "Script ist veraltet ${Instversion}. Upgrade auf ${LATEST_VERSION}."
+  sleep 2
 else
-  echo "gut"
+  greenMessage "Script ist Aktuell."
+  sleep 2
 fi
-sleep 2
 ####################################################
-#Wichtige Software Installieren --Variabel abfrage
+#Wichtige Software Installieren
 clear
-echo "Die auswahl (N) führt zum Abbruch des Scripts. "
+echo "Wenn die Auswahl nicht mit (J) bestätigt wird, wird der Script Automatisch Beendet."
 read -p  "Es werden noch pakte für die funktion des Scripts benötigt. Installieren ? j/n : " paket
 if [ $paket == j ]
  then apt-get install sudo tar unzip screen
@@ -75,18 +72,17 @@ fi
 while true
   do
 	clear
-greenMessage "################################"
-greenMessage "#                              #"
-greenMessage "#                              #"
-greenMessage "#      Multi Tool ver.1.0      #"
-greenMessage "#          by Bigsumo          #"
-greenMessage "#                              #"
-greenMessage "#                              #"
-greenMessage "################################"
+greenMessage "######################################"
+greenMessage "#                                    #"
+greenMessage "#         Multi Tool ver.1.0.0       #"
+greenMessage "#            by BigsumoDev           #"
+greenMessage "#                                    #"
+greenMessage "######################################"
 echo
-echo "1. TeamSpeak Installer"
-echo "2. TS3-Musik Bot Installer"
-echo "3. Webspace full Installation"
+greenMessage "Die Funktionen sind noch nicht Inplamentiert"
+redMessage "1. TeamSpeak 3"
+redMessage "2. TS3-Musik Bot"
+redMessage "3. Webspace"
 redMessage "3. None"
 redMessage "4. None"
 #######################################################
@@ -116,7 +112,7 @@ echo
 					tar -xjf teamspeak3-server_linux_amd64-3.0.13.8.tar.bz2
 					cd teamspeak3-server_linux_amd64
 					clear
-					read -p "Wollen sie denn TeamSpeak hochfahren (j/n)? :" ts3
+					read -p "Willst du denn TeamSpeak Starten (j/n)? :" ts3
 					if [ $ts3 == j ]
 						then ./ts3server_startscript.sh start
 						echo "ts3 gestartet"
