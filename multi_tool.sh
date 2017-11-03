@@ -2,15 +2,12 @@
 # Multi Tool | Install Server Application
 # Devolvement by BigsumoDev - Studio4Gamer.de
 #E-Mail = bigsumo@studio4gamer.de
+#
+# Script is dont be done
 Instversion="1.0.0"
+Build="Pre-Build-1"
 
-#Informecho 
-echo "Der Script ist noch nicht Funktionsfähig"
-sleep 5
 #####################################################
-#Variabel
-question="Installation wirklich starten ?"
-error="Falscher Parameter, bitte wiederhole die Eingabe"
 #################--Funktionen--######################
 #Color
 function greenMessage {
@@ -26,8 +23,11 @@ function errorEingabe {
 }
 function errorExit {
   redMessage "${@}"
-  exit 1
 }
+
+## Evt. Shell Oberfläche Per Function Für Mehrfaches Aufrufen.
+##
+##
 ####################################################
 #Update/Upgrade - Muss noch überarbeitet werden.
 clear
@@ -51,21 +51,33 @@ clear
 LATEST_VERSION=$(wget --no-check-certificate --timeout=60 -qO - https://raw.githubusercontent.com/BigsumoDev/MultiTool/master/multi_tool.sh | grep -Po '(?<=Instversion=")([0-9]\.[0-9]\.[0-9]+)')
 echo "Scipt Version Check"
 if [ "$(printf "${LATEST_VERSION}\n${Instversion}" | sort -V | tail -n 1)" != "$Instversion" ]; then
-  errorExit "Script ist veraltet ${Instversion}. Upgrade auf ${LATEST_VERSION}."
-  sleep 2
-else
-  greenMessage "Script ist Aktuell."
-  sleep 2
-fi
+  errorExit "Script ist veraltet ${Instversion}. Update auf ${LATEST_VERSION}."
+  sleep 1
+  read -p "Wollen sie Updaten (j/n) ?" githube
+    if [ $githube == j ]
+      then wget -N https://raw.githubusercontent.com/BigsumoDev/MultiTool/master/multi_tool.sh
+      sleep 2
+      clear
+      bash multi_tool.sh
+    else
+      clear
+      redMessage "Für die beste Funktionen, ist immmer die akktuellste Version die Beste Wahl. [Auf eigene verantwortung]"
+      sleep 2
+    fi
+  else
+    clear
+    greenMessage "Die Version $Instversion ist die Akktuellste."
+    sleep 2
+  fi
 ####################################################
 #Wichtige Software Installieren
 clear
-echo "Wenn die Auswahl nicht mit (J) bestätigt wird, wird der Script Automatisch Beendet."
-read -p  "Es werden noch pakte für die funktion des Scripts benötigt. Installieren ? j/n : " paket
+echo "Info: Bei Ablehnung des Pakets wird das Script geschlossen!."
+read -p  "Wichtige Pakete Installieren? j/n : " paket
 if [ $paket == j ]
  then apt-get install sudo tar unzip screen
 else
-set -e
+  set -e
 fi
 ####################################################
 # Die Auswahl oberfläche
@@ -74,37 +86,48 @@ while true
 	clear
 greenMessage "######################################"
 greenMessage "#                                    #"
-greenMessage "#         Multi Tool ver.1.0.0       #"
+greenMessage "#         Multi Tool ver.$Instversion       #"
 greenMessage "#            by BigsumoDev           #"
 greenMessage "#                                    #"
+greenMessage "#               $build          #"
 greenMessage "######################################"
 echo
 greenMessage "Die Funktionen sind noch nicht Inplamentiert"
-redMessage "1. TeamSpeak 3"
-redMessage "2. TS3-Musik Bot"
-redMessage "3. Webspace"
-redMessage "3. None"
-redMessage "4. None"
+redMessage "1. TeamSpeak 3 |- In Bearbeitung"
+redMessage "2. TS3-Musik Bot |- In Bearbeitung"
+redMessage "3. Webspace |- In Bearbeitung"
+redMessage "3. Mailserver |- In Bearbeitung"
+redMessage "4. GamingServer |- In Bearbeitung"
+redMessage "Mehr wird noch kommen!"
 #######################################################
 #Installationen
 echo
-	read -p "Was soll installiert werden?:" kommando
+	read -p "Bitte geben sie eine Zahl ein(1-4). Um die Installation zu Starten ?:" kommando
 		case "$kommando" in
-			1)  clear ##TeamSpeak Installation##
+#####################TeamSpeak Installation ####################################
+			1)  clear
 				echo ""
 				echo "TeamSpeak Installer wird gestartet..."
 				sleep 2
+          read -p "Soll ein User für die Anwendung Erstellt werden (J/N)?." create;
+            if [ $create == j ]; then
+              read -p "Wie soll der User Heißen? = " name;
+              adduser $name
+              su $name
+            else
+              echo "Programm Ende"
+            fi
 					echo ""
-					read -p "Wo soll Teamspeak Installiert werden: (/home/ts3) :  " pfad
-					if [ $pfad == * ]
+					read -p "Wo soll Teamspeak Installiert werden: (Standart: /home/ts3). : " inst;
+					if [ $inst == * ]
 					then
-						sudo mkdir $pfad
-						cd $pfad
+						sudo mkdir $inst
+						cd $inst
 					else
-						sudo mkdir /home/ts3t
-						cd /home/ts3t
+						sudo mkdir /home/ts3
+						cd /home/ts3
 					fi
-					echo Teamspeak wird gedownlodet...
+					echo Teamspeak wird Heruntergeladen...
 					sleep 1
 					wget http://dl.4players.de/ts/releases/3.0.13.8/teamspeak3-server_linux_amd64-3.0.13.8.tar.bz2
 					clear
@@ -122,40 +145,52 @@ echo
 					echo "done"
 				break
 			;;
-			2) 	clear ##TS3-Musik Bot Installer##
-					echo ""
-					echo "Der Musikbot Installer"
-					echo "Wird gestartet..."
-					sleep 2
-						echo ""
-						read -p "Hab sie TeamSpeak installiert? (j/n) ?:" tsbot
-						if [ $tsbot == j ]
-						then
-							clear
-							read -p "Wo wollen sie denn Bot Installiert haben? (Standart: /home/..)  :" tsbot
-							if [ $tsbot == *]
-								then
-								sudo mkdir $tsbot
-								cd $tsbot
-							else
-								sudo mkdir /home/ts3bot
-								cd /home/ts3bot
-							fi
-						else
-							break
-						fi
-				break
+################### TeamSpeak Musikbot #########################################
+			2) 	clear
 			;;
-			3) echo "Webspace Installation wird gestartet ..."
-				break
+################### Webspace Installation ######################################
+			3) clear
+      wTitel="WebSpace Installer v.1.0" #Variabel
+        echo $wTitel
+        read -p "Handelt es sich um eine Installation/Deinstallation (i/d)" webspace
+          if [[ $webspace == i ]]; then
+            clear
+            echo $wTitel
+            echo
+            read -p "Wollen sie Wirklich WebSpace Installieren(j/n)" install
+              if [[ $install = j ]]; then
+                clear
+                sudo apt-get install apache2 php5 libapache2-mod-php5
+                greenMessage "Webspace wurde installiert"
+                sleep 1
+                echo "MySQL wird Installiert..."
+                sleep 2
+                sudo  apt-get install mysql-server mysql-client php5-mysql
+                greenMessage "MySQL wurde Installiert"
+                break
+              else
+                echo "Test"
+                sleep 2
+              fi
+              break
+          elif [[ $webspace == d ]]; then
+            clear
+            echo $wTitel
+            echo
+            read -p "Wollen sie Wirklich WebSpace Deinstallieren "
+            sleep 1
+          else
+            set -e
+          fi
 			;;
-			*) echo "Unbekannter Parameter"
+################## Falsche Angabe ##############################################
+			*) redMessage "Unbekannter Parameter"
 				sleep 1
 			;;
 	esac
 done
-
-
-####################################################
+################################################################################
 #Ende
 echo "Danke für die Benutzung von Multi Tool"
+pause 1
+exit
